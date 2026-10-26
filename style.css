@@ -1,37 +1,47 @@
-* {
+/* ==================================================
+   VARIABLES
+================================================== */
+
+:root {
+    --background: #f3f3ef;
+    --foreground: #0a0a0a;
+    --muted: #6b6b66;
+    --line: rgba(10, 10, 10, 0.24);
+
+    --sans: "Rubik", Arial, Helvetica, sans-serif;
+    --serif: "Neuton", Georgia, "Times New Roman", serif;
+
+    --page-padding: clamp(1.25rem, 3.2vw, 3.5rem);
+    --section-space: clamp(8rem, 15vw, 15rem);
+}
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-html,
+html {
+    scroll-behavior: smooth;
+    background: var(--background);
+}
+
 body {
     margin: 0;
-    padding: 0;
-}
+    background: var(--background);
+    color: var(--foreground);
 
-body {
-    min-height: 100vh;
-    background: #ffffff;
-    color: #111111;
-    font-family: Arial, Helvetica, sans-serif;
-}
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.4;
 
-main {
-    padding: 40px;
-}
-
-h1 {
-    margin: 0 0 8px;
-    font-size: 32px;
-    font-weight: 500;
-}
-
-p {
-    margin: 0 0 40px;
-}
-
-nav {
-    display: flex;
-    gap: 20px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -39,6 +49,713 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+p,
+h1,
+h2 {
+    margin-top: 0;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 5px;
+}
+
+::selection {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.site-header {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    width: 100%;
+    padding: var(--page-padding);
+
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.075em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.header-name {
+    transition: opacity 180ms ease;
+}
+
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem 1.5rem;
+}
+
+.site-header a {
+    transition: opacity 180ms ease;
+}
+
+.site-header a:hover {
+    opacity: 0.45;
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 100svh;
+    padding:
+        clamp(8rem, 16vh, 12rem)
+        var(--page-padding)
+        var(--page-padding);
+}
+
+.hero-main {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.6fr)
+        minmax(18rem, 0.65fr);
+    gap: clamp(3rem, 8vw, 10rem);
+    align-items: end;
+}
+
+.location {
+    grid-column: 1 / -1;
+
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+
+    color: var(--muted);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    max-width: 11ch;
+    margin: 0;
+
+    font-family: var(--sans);
+    font-size: clamp(5rem, 11.7vw, 12.5rem);
+    font-weight: 500;
+    letter-spacing: -0.07em;
+    line-height: 0.76;
+}
+
+.hero h1 span {
+    font-size: 0.48em;
+    letter-spacing: -0.03em;
+}
+
+.professional-title {
+    max-width: 12ch;
+    margin: 0;
+    padding-bottom: 0.35rem;
+
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4.3vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 0.88;
+}
+
+.hero-lower {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(20rem, 0.85fr);
+    gap: clamp(4rem, 10vw, 12rem);
+    align-items: end;
+
+    margin-top: clamp(7rem, 14vh, 12rem);
+}
+
+
+/* ==================================================
+   FIND ME ON
+================================================== */
+
+.find-me {
+    align-self: end;
+}
+
+.find-me-label {
+    margin-bottom: 1.25rem;
+
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.find-me-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.7rem;
+}
+
+.find-me-links a {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: baseline;
+
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    transition:
+        border-color 180ms ease,
+        opacity 180ms ease;
+}
+
+.find-me-links a:hover {
+    border-bottom-color: var(--foreground);
+}
+
+.find-me-links a span {
+    font-size: 0.8rem;
+    letter-spacing: 0;
+}
+
+.hero-introduction {
+    max-width: 39rem;
+    margin: 0;
+
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.3vw, 2.35rem);
+    line-height: 1.06;
+}
+
+
+/* ==================================================
+   SECTIONS
+================================================== */
+
+.section {
+    padding:
+        var(--section-space)
+        var(--page-padding)
+        0;
+}
+
+.section-header {
+    display: grid;
+    grid-template-columns:
+        minmax(3rem, 0.3fr)
+        minmax(0, 2.2fr)
+        minmax(1rem, 0.5fr);
+    align-items: baseline;
+
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.section-number {
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+}
+
+.section-header h2 {
+    grid-column: 2;
+
+    margin: 0;
+
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+}
+
+.section-content {
+    margin-left: 13%;
+    padding-top: clamp(3rem, 6vw, 6rem);
+}
+
+
+/* ==================================================
+   ABOUT
+================================================== */
+
+.about-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(16rem, 0.7fr);
+    gap: clamp(4rem, 9vw, 10rem);
+    align-items: start;
+}
+
+.about-lead {
+    max-width: 17ch;
+    margin: 0;
+
+    font-family: var(--serif);
+    font-size: clamp(2.7rem, 5.7vw, 6rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+}
+
+.about-details {
+    max-width: 32rem;
+    padding-top: 0.4rem;
+
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.55vw, 1.55rem);
+    line-height: 1.28;
+}
+
+.about-details p {
+    margin-bottom: 1.5em;
+}
+
+
+/* ==================================================
+   WRITINGS
+================================================== */
+
+.section-statement {
+    max-width: 20ch;
+    margin:
+        0
+        0
+        clamp(4rem, 9vw, 8rem);
+
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 5.3rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+}
+
+.primary-link {
+    display: grid;
+    grid-template-columns:
+        minmax(9rem, 0.45fr)
+        minmax(0, 1.55fr)
+        auto;
+    gap: 1rem;
+    align-items: start;
+
+    padding: 1.5rem 0 1.8rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+
+    transition: padding-left 180ms ease;
+}
+
+.primary-link:hover {
+    padding-left: 0.75rem;
+}
+
+.primary-link-label {
+    padding-top: 0.45rem;
+
+    color: var(--muted);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+}
+
+.primary-link-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4.5vw, 4.8rem);
+    line-height: 0.9;
+}
+
+.primary-link-arrow {
+    font-size: 1rem;
+}
+
+
+/* ==================================================
+   TALKS
+================================================== */
+
+.talk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 6rem);
+}
+
+.talk-column {
+    min-width: 0;
+}
+
+.column-year {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--foreground);
+
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+}
+
+.secondary-year {
+    margin-top: clamp(3rem, 7vw, 6rem);
+}
+
+.talk {
+    position: relative;
+
+    display: block;
+
+    padding:
+        1.45rem
+        2rem
+        2.25rem
+        0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.talk-context {
+    display: block;
+
+    margin-bottom: 0.9rem;
+
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.talk-title {
+    display: block;
+    max-width: 21ch;
+
+    font-family: var(--serif);
+    font-size: clamp(1.45rem, 2.2vw, 2.5rem);
+    line-height: 0.98;
+}
+
+.talk-arrow {
+    position: absolute;
+    top: 1.4rem;
+    right: 0;
+
+    font-size: 0.8rem;
+
+    transition: transform 180ms ease;
+}
+
+.talk:hover .talk-arrow {
+    transform: translate(3px, -3px);
+}
+
+.talk:hover .talk-title {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+}
+
+.archive-link {
+    display: inline-flex;
+    gap: 0.65rem;
+    align-items: baseline;
+
+    margin-top: 3rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--foreground);
+
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+
+/* ==================================================
+   WORK
+================================================== */
+
+.section-work {
+    padding-bottom: var(--section-space);
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(16rem, 0.7fr)
+        minmax(0, 1.3fr);
+    gap: clamp(4rem, 10vw, 12rem);
+    align-items: start;
+}
+
+.work-introduction {
+    max-width: 17ch;
+    margin: 0;
+
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 4vw, 4.3rem);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+}
+
+.work-areas {
+    border-top: 1px solid var(--line);
+}
+
+.work-area {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    align-items: baseline;
+
+    padding: 1.15rem 0 1.4rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.work-area span {
+    color: var(--muted);
+    font-size: 0.63rem;
+    letter-spacing: 0.07em;
+}
+
+.work-area p {
+    margin: 0;
+
+    font-family: var(--serif);
+    font-size: clamp(1.65rem, 3vw, 3.3rem);
+    line-height: 0.95;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.site-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+
+    padding: var(--page-padding);
+    border-top: 1px solid var(--line);
+
+    color: var(--muted);
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.footer-identity,
+.footer-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.footer-meta {
+    justify-self: end;
+    min-width: min(100%, 16rem);
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 950px) {
+
+    .hero-main {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+
+    .professional-title {
+        max-width: 16ch;
+        margin-left: 22%;
+    }
+
+    .hero-lower {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .hero-introduction {
+        margin-left: 22%;
+    }
+
+    .section-content {
+        margin-left: 8%;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-details {
+        margin-left: 35%;
+    }
+
+    .talk-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .work-areas {
+        margin-left: 25%;
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 650px) {
+
+    :root {
+        --page-padding: 1rem;
+        --section-space: 7rem;
+    }
+
+    .site-header {
+        position: relative;
+        align-items: flex-start;
+    }
+
+    .main-nav {
+        max-width: 14rem;
+        gap: 0.65rem 1rem;
+    }
+
+    .hero {
+        min-height: calc(100svh - 4rem);
+        padding-top: 5rem;
+    }
+
+    .hero h1 {
+        max-width: none;
+
+        font-size: clamp(4rem, 17vw, 6.2rem);
+        line-height: 0.8;
+    }
+
+    .professional-title {
+        margin-left: 0;
+
+        font-size: clamp(2.5rem, 11vw, 4rem);
+    }
+
+    .hero-lower {
+        margin-top: 6rem;
+    }
+
+    .find-me-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+    }
+
+    .hero-introduction {
+        margin-left: 0;
+        font-size: 1.4rem;
+    }
+
+    .section-header {
+        grid-template-columns: 2rem 1fr;
+    }
+
+    .section-header h2 {
+        grid-column: 2;
+    }
+
+    .section-content {
+        margin-left: 0;
+        padding-top: 3rem;
+    }
+
+    .about-details {
+        margin-left: 0;
+    }
+
+    .about-lead {
+        font-size: clamp(2.7rem, 12vw, 4.2rem);
+    }
+
+    .primary-link {
+        grid-template-columns: 1fr auto;
+    }
+
+    .primary-link-label {
+        grid-column: 1 / -1;
+    }
+
+    .talk-grid {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .talk-title {
+        font-size: clamp(1.7rem, 7vw, 2.4rem);
+    }
+
+    .work-areas {
+        margin-left: 0;
+    }
+
+    .site-footer {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-identity,
+    .footer-meta {
+        width: 100%;
+        justify-self: stretch;
+    }
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
 }
