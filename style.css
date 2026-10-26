@@ -1,22 +1,35 @@
 /* ==========================================================
    ONUR YÜCE GÜN
-   Typography system:
-   Rubik  = identity / structure / metadata
-   Neuton = voice / content / titles
+   ----------------------------------------------------------
+   RUBIK  = identity / navigation / metadata
+   NEUTON = titles / statements / editorial content
 ========================================================== */
 
 
 :root {
-    --bg: #f4f4f0;
-    --fg: #090909;
-    --muted: #6f6f68;
-    --line: rgba(9, 9, 9, 0.22);
+
+    --bg: #f3f3ef;
+    --fg: #080808;
+    --muted: #686861;
+
+    --line: rgba(8, 8, 8, 0.24);
+    --line-strong: rgba(8, 8, 8, 0.82);
 
     --sans: "Rubik", Arial, Helvetica, sans-serif;
     --serif: "Neuton", Georgia, "Times New Roman", serif;
 
-    --pad: clamp(1.5rem, 2.8vw, 3rem);
-    --section-space: clamp(8rem, 13vw, 13rem);
+    --edge: clamp(1.6rem, 2.9vw, 3.3rem);
+
+    --section-gap: clamp(9rem, 15vw, 15rem);
+
+    /*
+       One shared editorial inset.
+       This is important: About, Talks,
+       Writings and Work all align here.
+    */
+
+    --content-inset: 13%;
+
 }
 
 
@@ -24,34 +37,42 @@
    RESET
 ========================================================== */
 
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
     background: var(--bg);
 }
 
+
 body {
+
     margin: 0;
 
     background: var(--bg);
     color: var(--fg);
 
     font-family: var(--sans);
+
     line-height: 1.35;
 
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+
 }
+
 
 a {
     color: inherit;
     text-decoration: none;
 }
+
 
 p,
 h1,
@@ -60,6 +81,7 @@ h3 {
     margin-top: 0;
 }
 
+
 ::selection {
     background: var(--fg);
     color: var(--bg);
@@ -67,247 +89,271 @@ h3 {
 
 
 /* ==========================================================
-   HEADER
-========================================================== */
-
-.site-header {
-    position: absolute;
-    z-index: 20;
-
-    top: 0;
-    left: 0;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 100%;
-    padding: var(--pad);
-
-    font-size: 0.75rem;
-    font-weight: 500;
-
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
-.mark {
-    font-weight: 600;
-}
-
-.main-nav {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 1.8rem;
-}
-
-.main-nav a,
-.mark {
-    transition: opacity 150ms ease;
-}
-
-.main-nav a:hover,
-.mark:hover {
-    opacity: 0.45;
-}
-
-
-/* ==========================================================
    HERO
+   ----------------------------------------------------------
+   Deliberately asymmetric.
+   Do not center this composition.
 ========================================================== */
+
 
 .hero {
+
+    position: relative;
+
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.2fr)
-        minmax(20rem, 0.72fr);
+        minmax(0, 1.15fr)
+        minmax(18rem, 0.72fr);
 
     grid-template-rows:
-        auto
-        1fr;
+        minmax(18rem, 1fr)
+        auto;
 
-    column-gap: clamp(4rem, 10vw, 11rem);
+    column-gap: clamp(5rem, 11vw, 13rem);
 
     min-height: 100svh;
 
     padding:
-        clamp(8rem, 15vh, 11rem)
-        var(--pad)
-        var(--pad);
+        clamp(4.8rem, 8vh, 7rem)
+        var(--edge)
+        clamp(4rem, 7vh, 6rem);
+
 }
 
 
 /* NAME */
 
+
 .hero-name {
+
+    grid-column: 1;
+    grid-row: 1;
+
     align-self: start;
+
 }
 
+
 .hero-name h1 {
-    max-width: 9ch;
+
+    max-width: 8.5ch;
+
     margin: 0;
 
     font-family: var(--sans);
 
     /*
-       Reduced from the previous oversized version.
-       Your annotation specifically called the hero too large.
+       Preserve the scale from the approved reference.
+       Do not enlarge this further.
     */
-    font-size: clamp(4.4rem, 8.6vw, 9rem);
+
+    font-size: clamp(5rem, 10.7vw, 11rem);
 
     font-weight: 500;
 
-    letter-spacing: -0.065em;
-    line-height: 0.78;
-}
+    letter-spacing: -0.075em;
 
-.hero-name h1 span {
-    display: block;
+    line-height: 0.68;
 
-    /*
-       PhD stays subordinate rather than becoming its own
-       giant graphic element.
-    */
-    margin-top: 0.35em;
-
-    font-size: 0.34em;
-    letter-spacing: -0.025em;
 }
 
 
-/* TITLE */
+.degree {
+
+    margin-top: clamp(3.5rem, 6vw, 6rem);
+
+    font-family: var(--sans);
+
+    font-size: clamp(2.5rem, 4vw, 4.8rem);
+
+    font-weight: 500;
+
+    letter-spacing: -0.055em;
+
+    line-height: 1;
+
+}
+
+
+/* PROFESSIONAL TITLE */
+
 
 .hero-title {
-    align-self: center;
-}
 
-.hero-title p {
+    grid-column: 2;
+    grid-row: 1;
+
+    align-self: center;
+
     max-width: 11ch;
-    margin: 0;
 
     font-family: var(--serif);
 
-    font-size: clamp(2.25rem, 3.4vw, 3.8rem);
+    font-size: clamp(2.5rem, 3.9vw, 4.4rem);
 
     font-weight: 300;
 
-    letter-spacing: -0.035em;
-    line-height: 0.89;
+    letter-spacing: -0.045em;
+
+    line-height: 0.87;
+
 }
 
 
-/* LOWER HERO */
+/* FIND ME */
 
-.social {
+
+.find-me {
+
+    grid-column: 1;
+    grid-row: 2;
+
     align-self: end;
 
-    padding-bottom: 0.35rem;
 }
 
-.micro-label {
-    margin-bottom: 1.25rem;
+
+.find-label {
+
+    margin-bottom: 1.35rem;
 
     color: var(--muted);
 
     /*
-       Increased from the tiny previous version.
+       Increased from the version you marked too small.
     */
-    font-size: clamp(0.78rem, 0.9vw, 0.95rem);
+
+    font-size: clamp(0.82rem, 0.95vw, 1rem);
 
     font-weight: 500;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
+
     text-transform: uppercase;
+
 }
 
-.social-links {
+
+.find-links {
+
     display: flex;
+
     flex-wrap: wrap;
 
-    gap: 1rem 2rem;
+    gap:
+        0.85rem
+        clamp(1.6rem, 2.2vw, 2.8rem);
+
 }
 
-.social-links a {
-    font-size: clamp(0.9rem, 1.05vw, 1.08rem);
+
+.find-links a {
+
+    padding-bottom: 0.18rem;
+
+    border-bottom: 1px solid transparent;
+
+    font-size: clamp(0.88rem, 1vw, 1.05rem);
 
     font-weight: 500;
 
-    letter-spacing: 0.045em;
+    letter-spacing: 0.055em;
+
     text-transform: uppercase;
 
-    padding-bottom: 0.22rem;
-
-    border-bottom: 1px solid transparent;
 }
 
-.social-links a:hover {
+
+.find-links a:hover {
     border-bottom-color: var(--fg);
 }
 
 
-.hero-description {
-    align-self: end;
-}
+/* HERO BIO */
 
-.hero-description p {
+
+.hero-bio {
+
+    grid-column: 2;
+    grid-row: 2;
+
+    align-self: end;
+
     max-width: 31rem;
-    margin: 0;
 
     font-family: var(--serif);
 
-    font-size: clamp(1.5rem, 2vw, 2.1rem);
+    font-size: clamp(1.55rem, 2.15vw, 2.3rem);
 
-    line-height: 1.08;
+    line-height: 1.07;
+
 }
 
 
 /* ==========================================================
-   GLOBAL SECTION STRUCTURE
+   SECTION SYSTEM
 ========================================================== */
 
+
 .section {
+
     padding:
-        var(--section-space)
-        var(--pad)
+
+        var(--section-gap)
+
+        var(--edge)
+
         0;
-}
 
-
-.section-header {
-    display: grid;
-
-    grid-template-columns:
-        5rem
-        1fr;
-
-    align-items: baseline;
-
-    padding-bottom: 1.25rem;
-
-    border-bottom: 1px solid var(--line);
 }
 
 
 /*
-   Enlarged based directly on your annotation:
-   section labels were visually disappearing.
+   Header is intentionally almost full-width,
+   while actual content begins at content-inset.
 */
 
-.section-header span,
+.section-header {
+
+    display: grid;
+
+    grid-template-columns:
+        var(--content-inset)
+        1fr;
+
+    align-items: baseline;
+
+    padding-bottom: 1.35rem;
+
+    border-bottom: 1px solid var(--line);
+
+}
+
+
+.section-number,
 .section-header h2 {
-    font-size: clamp(0.9rem, 1.1vw, 1.12rem);
+
+    /*
+       Enlarged from the original reference because
+       these were specifically marked as too small.
+    */
+
+    font-size: clamp(0.88rem, 1.08vw, 1.1rem);
 
     font-weight: 500;
 
-    letter-spacing: 0.075em;
+    letter-spacing: 0.085em;
+
     text-transform: uppercase;
+
 }
 
-.section-header span {
+
+.section-number {
     color: var(--muted);
 }
+
 
 .section-header h2 {
     margin: 0;
@@ -318,45 +364,55 @@ h3 {
    ABOUT
 ========================================================== */
 
-.about-layout {
+
+.about-grid {
+
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.25fr)
-        minmax(18rem, 0.62fr);
+        minmax(0, 1.2fr)
+        minmax(18rem, 0.55fr);
 
-    gap: clamp(4rem, 10vw, 12rem);
+    gap: clamp(5rem, 11vw, 13rem);
 
-    margin-left: 12%;
+    margin-left: var(--content-inset);
 
-    padding-top: clamp(4rem, 7vw, 7rem);
+    padding-top: clamp(5rem, 8vw, 8rem);
+
 }
 
 
 .about-lead {
-    max-width: 18ch;
+
+    max-width: 17ch;
+
     margin: 0;
 
     font-family: var(--serif);
 
-    font-size: clamp(2.5rem, 4.6vw, 4.9rem);
+    font-size: clamp(2.5rem, 4.8vw, 5.1rem);
 
     font-weight: 300;
 
-    letter-spacing: -0.035em;
-    line-height: 0.93;
+    letter-spacing: -0.04em;
+
+    line-height: 0.91;
+
 }
 
 
 .about-copy {
-    max-width: 31rem;
+
+    max-width: 30rem;
 
     font-family: var(--serif);
 
-    font-size: clamp(1.15rem, 1.45vw, 1.48rem);
+    font-size: clamp(1.15rem, 1.45vw, 1.5rem);
 
     line-height: 1.28;
+
 }
+
 
 .about-copy p {
     margin-bottom: 1.5em;
@@ -364,236 +420,198 @@ h3 {
 
 
 /* ==========================================================
-   LECTURES + TALKS
+   SHARED 3-COLUMN EDITORIAL GRID
+   ----------------------------------------------------------
+   Talks and Writings intentionally share this exact grid.
 ========================================================== */
 
-.talks-layout {
+
+.editorial-grid {
+
     display: grid;
 
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: clamp(2rem, 5vw, 5.5rem);
+    column-gap: clamp(3rem, 5.5vw, 6.5rem);
 
-    margin-left: 12%;
+    align-items: start;
 
-    padding-top: clamp(4rem, 7vw, 7rem);
+    margin-left: var(--content-inset);
+
+    padding-top: clamp(5rem, 8vw, 8rem);
+
 }
 
 
-.talk-column h3,
-.writing-column h3 {
-    margin: 0;
+.editorial-column {
 
-    padding-bottom: 1rem;
+    min-width: 0;
 
-    border-bottom: 1px solid var(--fg);
-
-    color: var(--muted);
-
-    font-size: clamp(0.82rem, 1vw, 1rem);
-
-    font-weight: 500;
-
-    letter-spacing: 0.075em;
-    text-transform: uppercase;
 }
 
 
-.talk {
-    position: relative;
-
-    display: block;
-
-    min-height: 10rem;
-
-    padding:
-        1.55rem
-        2rem
-        2rem
-        0;
-
-    border-bottom: 1px solid var(--line);
-}
+/* CATEGORY TITLES */
 
 
-.talk-meta {
-    display: block;
+.column-title {
 
-    max-width: 90%;
+    padding-bottom: 1.25rem;
 
-    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--line-strong);
 
     color: var(--muted);
 
     /*
-       Increased from the previous tiny metadata.
+       Enlarged relative to the first talks screenshot.
     */
-    font-size: clamp(0.76rem, 0.87vw, 0.9rem);
+
+    font-size: clamp(0.88rem, 1vw, 1.04rem);
 
     font-weight: 500;
 
-    letter-spacing: 0.055em;
-
-    line-height: 1.3;
+    letter-spacing: 0.08em;
 
     text-transform: uppercase;
-}
 
-
-.talk-name {
-    display: block;
-
-    max-width: 21ch;
-
-    /*
-       Reduced from the oversized previous talk titles.
-    */
-    font-family: var(--serif);
-
-    font-size: clamp(1.55rem, 2.05vw, 2.25rem);
-
-    line-height: 1;
-}
-
-
-.arrow {
-    position: absolute;
-
-    top: 1.55rem;
-    right: 0;
-
-    font-family: var(--sans);
-
-    font-size: 0.9rem;
-
-    transition: transform 150ms ease;
-}
-
-.talk:hover .arrow,
-.publication:hover .arrow {
-    transform: translate(3px, -3px);
-}
-
-.talk:hover .talk-name,
-.publication:hover .publication-title {
-    text-decoration: underline;
-
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.14em;
-}
-
-
-.archive-link {
-    display: inline-block;
-
-    margin-top: 2.5rem;
-
-    padding-bottom: 0.3rem;
-
-    border-bottom: 1px solid var(--fg);
-
-    font-size: 0.82rem;
-
-    font-weight: 500;
-
-    letter-spacing: 0.055em;
-    text-transform: uppercase;
 }
 
 
 /* ==========================================================
-   WRITINGS
+   EDITORIAL ENTRIES
 ========================================================== */
 
-.writing-intro {
-    margin-left: 12%;
 
-    padding-top: clamp(4rem, 6vw, 6rem);
-}
+.entry {
 
-
-.writing-intro p {
-    /*
-       Deliberately much smaller than the version
-       marked "too big" in your screenshot.
-    */
-
-    max-width: 31ch;
-
-    margin:
-        0
-        0
-        clamp(5rem, 9vw, 9rem);
-
-    font-family: var(--serif);
-
-    font-size: clamp(1.75rem, 3vw, 3rem);
-
-    font-weight: 300;
-
-    letter-spacing: -0.025em;
-
-    line-height: 1;
-}
-
-
-.writing-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: clamp(2rem, 5vw, 5.5rem);
-
-    margin-left: 12%;
-}
-
-
-.publication {
     position: relative;
 
     display: block;
 
-    min-height: 9rem;
-
     padding:
-        1.55rem
-        2rem
-        2rem
+
+        1.6rem
+        2.2rem
+        2.3rem
         0;
 
     border-bottom: 1px solid var(--line);
+
 }
 
 
-.publication-meta {
+/* SMALL RUBIK LABEL */
+
+
+.entry-meta {
+
     display: block;
 
-    margin-bottom: 0.85rem;
+    max-width: calc(100% - 1.5rem);
+
+    margin-bottom: 1.05rem;
 
     color: var(--muted);
 
-    font-size: clamp(0.76rem, 0.87vw, 0.9rem);
+    /*
+       Previously too small.
+       Increased without making it compete with title.
+    */
+
+    font-size: clamp(0.76rem, 0.88vw, 0.92rem);
 
     font-weight: 500;
 
-    letter-spacing: 0.06em;
+    letter-spacing: 0.065em;
+
+    line-height: 1.35;
 
     text-transform: uppercase;
+
 }
 
 
-.publication-title {
+/* NEUTON TITLE */
+
+
+.entry-title {
+
     display: block;
 
     max-width: 21ch;
 
+    /*
+       Closely preserves scale visible
+       in your approved talks reference.
+    */
+
     font-family: var(--serif);
 
-    font-size: clamp(1.55rem, 2.05vw, 2.25rem);
+    font-size: clamp(1.7rem, 2.15vw, 2.45rem);
 
-    line-height: 1;
+    font-weight: 400;
+
+    letter-spacing: -0.025em;
+
+    line-height: 0.97;
+
+}
+
+
+.entry-arrow {
+
+    position: absolute;
+
+    top: 1.6rem;
+
+    right: 0;
+
+    font-family: var(--sans);
+
+    font-size: 0.88rem;
+
+    transition: transform 150ms ease;
+
+}
+
+
+.entry:hover .entry-arrow {
+    transform: translate(3px, -3px);
+}
+
+
+.entry:hover .entry-title {
+
+    text-decoration: underline;
+
+    text-decoration-thickness: 1px;
+
+    text-underline-offset: 0.14em;
+
+}
+
+
+/* ARCHIVE */
+
+
+.archive-link {
+
+    display: inline-block;
+
+    margin-top: 3.3rem;
+
+    padding-bottom: 0.35rem;
+
+    border-bottom: 1px solid var(--fg);
+
+    font-size: clamp(0.78rem, 0.9vw, 0.94rem);
+
+    font-weight: 500;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+
 }
 
 
@@ -601,38 +619,45 @@ h3 {
    WORK
 ========================================================== */
 
+
 .work-section {
-    padding-bottom: var(--section-space);
+
+    padding-bottom: var(--section-gap);
+
 }
 
 
-.work-layout {
+.work-content {
+
     display: grid;
 
     grid-template-columns:
-        minmax(17rem, 0.7fr)
-        minmax(0, 1.3fr);
+        minmax(18rem, 0.65fr)
+        minmax(0, 1.35fr);
 
-    gap: clamp(4rem, 10vw, 12rem);
+    gap: clamp(5rem, 11vw, 13rem);
 
-    margin-left: 12%;
+    margin-left: var(--content-inset);
 
-    padding-top: clamp(4rem, 7vw, 7rem);
+    padding-top: clamp(5rem, 8vw, 8rem);
+
 }
 
 
-.work-intro {
-    max-width: 18ch;
-    margin: 0;
+.work-statement {
+
+    max-width: 17ch;
 
     font-family: var(--serif);
 
-    font-size: clamp(1.9rem, 3.4vw, 3.6rem);
+    font-size: clamp(2rem, 3.4vw, 3.8rem);
 
     font-weight: 300;
 
-    letter-spacing: -0.03em;
-    line-height: 0.96;
+    letter-spacing: -0.035em;
+
+    line-height: 0.94;
+
 }
 
 
@@ -641,7 +666,8 @@ h3 {
 }
 
 
-.work-list > div {
+.work-entry {
+
     display: grid;
 
     grid-template-columns:
@@ -651,31 +677,37 @@ h3 {
     align-items: baseline;
 
     padding:
-        1.2rem
+
+        1.25rem
         0
-        1.4rem;
+        1.5rem;
 
     border-bottom: 1px solid var(--line);
+
 }
 
 
-.work-list span {
+.work-entry span {
+
     color: var(--muted);
 
-    font-size: 0.72rem;
+    font-size: 0.78rem;
 
     letter-spacing: 0.06em;
+
 }
 
 
-.work-list p {
+.work-entry p {
+
     margin: 0;
 
     font-family: var(--serif);
 
-    font-size: clamp(1.6rem, 2.7vw, 3rem);
+    font-size: clamp(1.7rem, 2.8vw, 3.1rem);
 
     line-height: 0.95;
+
 }
 
 
@@ -683,16 +715,19 @@ h3 {
    FOOTER
 ========================================================== */
 
-.site-footer {
+
+footer {
+
     display: grid;
 
     grid-template-columns:
+        1fr
         1fr
         auto;
 
     gap: 3rem;
 
-    padding: var(--pad);
+    padding: var(--edge);
 
     border-top: 1px solid var(--line);
 
@@ -702,24 +737,10 @@ h3 {
 
     font-weight: 500;
 
-    letter-spacing: 0.06em;
-
-    line-height: 1.7;
+    letter-spacing: 0.065em;
 
     text-transform: uppercase;
-}
 
-
-.site-footer > div {
-    display: flex;
-
-    gap: 2rem;
-}
-
-.site-footer strong {
-    color: var(--fg);
-
-    font-weight: 500;
 }
 
 
@@ -727,53 +748,82 @@ h3 {
    TABLET
 ========================================================== */
 
-@media (max-width: 1000px) {
+
+@media (max-width: 1050px) {
+
+
+    :root {
+        --content-inset: 7%;
+    }
+
 
     .hero {
+
         grid-template-columns: 1fr;
-        gap: 4rem;
+
+        grid-template-rows: auto;
+
+        row-gap: 5rem;
+
     }
 
-    .hero-title {
+
+    .hero-name,
+    .hero-title,
+    .find-me,
+    .hero-bio {
+
+        grid-column: 1;
+        grid-row: auto;
+
+    }
+
+
+    .hero-title,
+    .hero-bio {
+
         margin-left: 30%;
-    }
 
-    .hero-description {
-        margin-left: 30%;
     }
 
 
-    .about-layout,
-    .talks-layout,
-    .writing-intro,
-    .writing-grid,
-    .work-layout {
-        margin-left: 7%;
-    }
+    .about-grid {
 
-
-    .about-layout {
         grid-template-columns: 1fr;
+
     }
+
 
     .about-copy {
-        margin-left: 30%;
+
+        max-width: 34rem;
+
+        margin-left: 35%;
+
     }
 
 
-    .talks-layout,
-    .writing-grid {
+    .editorial-grid {
+
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
+
+        row-gap: 6rem;
+
     }
 
 
-    .work-layout {
+    .work-content {
+
         grid-template-columns: 1fr;
+
     }
+
 
     .work-list {
+
         margin-left: 25%;
+
     }
 
 }
@@ -783,150 +833,201 @@ h3 {
    MOBILE
 ========================================================== */
 
-@media (max-width: 650px) {
+
+@media (max-width: 680px) {
+
 
     :root {
-        --pad: 1rem;
-        --section-space: 7rem;
-    }
 
+        --edge: 1rem;
 
-    .site-header {
-        position: relative;
+        --content-inset: 0%;
 
-        align-items: flex-start;
-    }
+        --section-gap: 7rem;
 
-    .main-nav {
-        max-width: 14rem;
-
-        justify-content: flex-end;
-
-        gap: 0.6rem 1rem;
     }
 
 
     .hero {
+
         display: block;
 
         min-height: auto;
 
-        padding-top: 5rem;
+        padding-top: 4rem;
+
     }
 
 
     .hero-name h1 {
+
         max-width: none;
 
-        font-size: clamp(3.7rem, 16vw, 5.4rem);
+        font-size: clamp(4rem, 17vw, 6rem);
+
+        line-height: 0.75;
+
     }
 
 
-    .hero-title,
-    .hero-description {
-        margin-left: 0;
+    .degree {
+
+        margin-top: 2.5rem;
+
+        font-size: 2.5rem;
+
     }
 
 
     .hero-title {
-        margin-top: 4.5rem;
+
+        margin:
+            5rem
+            0
+            0;
+
+        font-size: clamp(2.5rem, 11vw, 4rem);
+
     }
 
 
-    .hero-title p {
-        font-size: clamp(2.2rem, 10vw, 3.4rem);
+    .find-me {
+
+        margin-top: 6rem;
+
     }
 
 
-    .social {
-        margin-top: 5rem;
-    }
+    .find-links {
 
-
-    .social-links {
         flex-direction: column;
 
         align-items: flex-start;
 
-        gap: 0.8rem;
+        gap: 0.9rem;
+
     }
 
 
-    .hero-description {
-        margin-top: 5rem;
+    .hero-bio {
+
+        margin:
+            5rem
+            0
+            0;
+
+        font-size: 1.55rem;
+
     }
 
 
     .section-header {
+
         grid-template-columns:
             3rem
             1fr;
+
     }
 
 
-    .section-header span,
+    .section-number,
     .section-header h2 {
-        font-size: 0.85rem;
+
+        font-size: 0.86rem;
+
     }
 
 
-    .about-layout,
-    .talks-layout,
-    .writing-intro,
-    .writing-grid,
-    .work-layout {
-        margin-left: 0;
-    }
+    .about-grid {
 
-
-    .about-copy {
         margin-left: 0;
+
+        padding-top: 3.5rem;
+
     }
 
 
     .about-lead {
+
         font-size: clamp(2.5rem, 11vw, 4rem);
+
     }
 
 
-    .talks-layout,
-    .writing-grid {
+    .about-copy {
+
+        margin-left: 0;
+
+    }
+
+
+    .editorial-grid {
+
         grid-template-columns: 1fr;
 
-        gap: 5rem;
+        margin-left: 0;
+
+        padding-top: 3.5rem;
+
+        row-gap: 5rem;
+
     }
 
 
-    .talk {
-        min-height: 0;
+    .column-title {
+
+        font-size: 0.92rem;
+
     }
 
 
-    .talk-name,
-    .publication-title {
-        font-size: clamp(1.6rem, 7vw, 2.2rem);
+    .entry {
+
+        padding:
+            1.5rem
+            2rem
+            2rem
+            0;
+
     }
 
 
-    .writing-intro p {
-        font-size: clamp(1.75rem, 8vw, 2.6rem);
+    .entry-meta {
+
+        font-size: 0.78rem;
+
+    }
+
+
+    .entry-title {
+
+        font-size: clamp(1.7rem, 7.5vw, 2.4rem);
+
+    }
+
+
+    .work-content {
+
+        margin-left: 0;
+
+        padding-top: 3.5rem;
+
     }
 
 
     .work-list {
+
         margin-left: 0;
+
     }
 
 
-    .site-footer {
+    footer {
+
         grid-template-columns: 1fr;
-    }
 
+        gap: 0.35rem;
 
-    .site-footer > div {
-        flex-direction: column;
-
-        gap: 0.25rem;
     }
 
 }
@@ -936,11 +1037,14 @@ h3 {
    REDUCED MOTION
 ========================================================== */
 
+
 @media (prefers-reduced-motion: reduce) {
+
 
     html {
         scroll-behavior: auto;
     }
+
 
     *,
     *::before,
